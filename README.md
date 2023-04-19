@@ -21,10 +21,20 @@
 [![Contributing][contributing-image]][contributing-url]
 [![License][license-image]][license-url]
 
-## Overview
+
 *DIG: Dive into Graphs* is a turnkey library for graph deep learning research.
 
-[DIG: A Turnkey Library for Diving into Graph Deep Learning Research](https://arxiv.org/abs/2103.12608) by Meng Liu*, Youzhi Luo*, Limei Wang*, Yaochen Xie*, Hao Yuan*, Shurui Gui, Zhao Xu, Haiyang Yu, Jingtun Zhang, Yi Liu, Keqiang Yan, Bora Oztekin, Haoran Liu, Xuan Zhang, Cong Fu, and Shuiwang Ji.
+[DIG: A Turnkey Library for Diving into Graph Deep Learning Research](https://arxiv.org/abs/2103.12608)
+
+Meng Liu*, Youzhi Luo*, Limei Wang*, Yaochen Xie*, Hao Yuan*, Shurui Gui, Zhao Xu, Haiyang Yu, Jingtun Zhang, Yi Liu, Keqiang Yan, Bora Oztekin, Haoran Liu, Xuan Zhang, Cong Fu, and Shuiwang Ji.
+
+## Why DIG?
+
+The key difference with current graph deep learning libraries, such as PyTorch Geometric (PyG) and Deep Graph Library (DGL), is that, while PyG and DGL support basic graph deep learning operations, DIG provides a unified testbed for higher level, research-oriented graph deep learning tasks, such as graph generation, self-supervised learning, explainability, and 3D graphs.
+
+If you are working or plan to work on research in graph deep learning, DIG enables you to develop your own methods within our extensible framework, and compare with current baseline methods using common datasets and evaluation metrics without extra efforts.
+
+## Overview
 
 It includes unified implementations of **data interfaces**, **common algorithms**, and **evaluation metrics** for several advanced tasks. Our goal is to enable researchers to easily implement and benchmark algorithms. Currently, we consider the following research directions.
 
@@ -73,6 +83,8 @@ Please cite our paper if you find *DIG* useful in your work:
 
 ## Contact
 
-If you have any questions, please submit a new issue or contact us: Meng Liu [mengliu@tamu.edu] or Shuiwang Ji [sji@tamu.edu].
+If you have any technical questions, please submit a new issue.
+
+If you have other questions, please contact us: Meng Liu [mengliu@tamu.edu] or Shuiwang Ji [sji@tamu.edu].
 
 

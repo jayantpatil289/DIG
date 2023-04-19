@@ -19,7 +19,11 @@ def pipeline_GC(top_k):
         data_indices = list(range(len(dataset)))
         pgexplainer_trainset = dataset
     else:
-        loader = get_dataloader(dataset, data_args, train_args)
+        loader = get_dataloader(dataset,
+                                batch_size=train_args.batch_size,
+                                random_split_flag=data_args.random_split,
+                                data_split_ratio=data_args.data_split_ratio,
+                                seed=data_args.seed)
         data_indices = loader['test'].dataset.indices
         pgexplainer_trainset = loader['train'].dataset
 
@@ -122,7 +126,7 @@ def pipeline_NC(top_k):
                                          f"{model_args.model_name}_"
                                          f"pgexplainer")
     if not os.path.isdir(save_dir):
-        os.mkdir(save_dir)
+        os.makedirs(save_dir)
 
     pgexplainer = PGExplainer(gnnNets)
 
@@ -168,8 +172,9 @@ def pipeline_NC(top_k):
 
         graph = to_networkx(sub_data)
 
-        fidelity_score = top_k_fidelity(sub_data, edge_mask, top_k, gnnNets, pred_label)
-        sparsity_score = top_k_sparsity(sub_data, edge_mask, top_k)
+        fidelity_score = top_k_fidelity(sub_data, edge_mask, top_k, gnnNets, pred_label,
+                                        node_idx=node_idx, undirected=True)
+        sparsity_score = top_k_sparsity(sub_data, edge_mask, top_k, undirected=True)
 
         fidelity_score_list.append(fidelity_score)
         sparsity_score_list.append(sparsity_score)
@@ -195,7 +200,7 @@ def pipeline(top_k):
 
 
 if __name__ == '__main__':
-    top_k = 5
+    top_k = 6
     fidelity_scores, sparsity_scores = pipeline(top_k)
     print(f"fidelity score: {fidelity_scores.mean().item():.4f}, "
           f"sparsity score: {sparsity_scores.mean().item():.4f}")

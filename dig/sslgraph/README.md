@@ -27,6 +27,11 @@ Based on the framework and components, four state-of-the-art graph generation al
 
 Alghouth only contrastive learning framework and methods are implemented, the evaluation tools are also compatible with predictive methods for self-supervised learning, such as graph auto-encoders.
 
+## Environment requirements
+
+- PyTorch >= 1.6.0
+- PyTorch Geometric >= 1.6.1
+
 ## Package Usage
 
 ***We have provided examples for running the four pre-implemented algorithms with data interfaces and evaluation tasks. Please refer to the jupyter notebooks for instructions.***
@@ -68,7 +73,7 @@ Contrastive(objective, views_fn, graph_level=True, node_level=False, z_dim=None,
 ```python
 train(encoder, data_loader, optimizer, epochs, per_epoch_out=False)
 ```
-* `encoder`: Pytorch `nn.Module` object. Callable with input graphs, and returns graph-level, node-level, or both representations.
+* `encoder`: Pytorch `nn.Module` object or List of `nn.Module` object. Callable with input graphs, and returns graph-level, node-level, or both representations. If single object, the encoder will be shared by all views. If `List`, will use dedicated encoders for each view and the number of encoders should match the number of views.
 * `data_loader`: Pytorch `Dataloader` object.
 * `optimizer`: Pytorch optimizer. Should be initialized with the parameters in `encoder`. *Example*: `optimizer=Adam(encoder.parameters(), lr=0.001)`
 * `epochs`: Integer. Number of pretraining epochs.
@@ -84,7 +89,7 @@ If you find our library useful, please consider cite our work below.
 ```
 @article{xie2021self,
   title={Self-Supervised Learning of Graph Neural Networks: A Unified Review},
-  author={Xie, Yaochen and Xu, Zhao and Wang, Zhengyang and Ji, Shuiwang},
+  author={Xie, Yaochen and Xu, Zhao and and Zhang, Jingtun and Wang, Zhengyang and Ji, Shuiwang},
   journal={arXiv preprint arXiv:2102.10757},
   year={2021}
 }
